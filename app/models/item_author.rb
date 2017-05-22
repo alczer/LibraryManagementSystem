@@ -1,0 +1,2 @@
+class ItemAuthor < ApplicationRecord
+end

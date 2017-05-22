@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LibraryProject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<nav class="navbar navbar-inverse">
+  		<div class="navbar-header">
+            <%= link_to "Strona główna", root_path, class: "navbar-brand" %>
+  		</div>
+		<div class="nav navbar-nav">
+   			<% if user_signed_in? %>
+      			<li><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to "Zarejestruj się", new_user_registration_path %></li>
+	 		    <li><%= link_to "Zaloguj się", new_user_session_path %></li>
+			 <% end %>
+   	</div>
+
+     <div align="right">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Szukaj w bibliotece..." name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+	</nav>	
+	<% if false %>
+	  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
+    <%= yield %>
+  </body>
+</html>
