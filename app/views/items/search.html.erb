@@ -1,0 +1,36 @@
+
+<body class="items-body">
+
+<% if @search_results.count == 0 %>
+	<h1>Nie znaleziono żadnych wyników</h1>
+<% else %>	
+
+	
+
+	<div class="container" >
+
+		<% @search_results.each do |item| %>
+			<div class="col-md-3 row" id="borderimg2">
+
+				<a href="/items/<%= item.id %>">
+					<%= image_tag item.item_img_file_name, class: "item" %>
+				</a>
+
+
+			</div>
+		<% end %>
+
+	
+	</div>
+	
+<% end %>	
+
+
+
+
+</body>
+
+
+
+
+

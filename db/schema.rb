@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522004031) do
+ActiveRecord::Schema.define(version: 20170524105244) do
 
   create_table "author", primary_key: "id_author", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
@@ -27,13 +27,17 @@ ActiveRecord::Schema.define(version: 20170522004031) do
   end
 
   create_table "item", primary_key: "id_item", force: :cascade do |t|
-    t.integer "id_publisher",              null: false
-    t.string  "name",         limit: 255,  null: false
-    t.string  "description",  limit: 1000, null: false
-    t.integer "isbn",                      null: false
-    t.string  "language",     limit: 255,  null: false
-    t.string  "state",        limit: 12,   null: false
-    t.date    "date_pub",                  null: false
+    t.integer  "id_publisher",                       null: false
+    t.string   "name",                  limit: 255,  null: false
+    t.string   "description",           limit: 1000, null: false
+    t.integer  "isbn",                               null: false
+    t.string   "language",              limit: 255,  null: false
+    t.string   "state",                 limit: 12,   null: false
+    t.date     "date_pub",                           null: false
+    t.string   "item_img_file_name"
+    t.string   "item_img_content_type"
+    t.integer  "item_img_file_size"
+    t.datetime "item_img_updated_at"
   end
 
   create_table "item_author", primary_key: "id_item_author", force: :cascade do |t|
@@ -49,11 +53,6 @@ ActiveRecord::Schema.define(version: 20170522004031) do
   create_table "item_category", primary_key: "id_item_category", force: :cascade do |t|
     t.integer "id_item",     null: false
     t.integer "id_category", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "loan", primary_key: "id_loan", force: :cascade do |t|
