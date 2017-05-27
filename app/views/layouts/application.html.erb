@@ -16,12 +16,16 @@
 		<div class="nav navbar-nav">
    			<% if user_signed_in? %>
       			<li><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></li>
-
 			<% else %> 		    
           <li><%= link_to "Zarejestruj się", new_user_registration_path %></li>
           <li><%= link_to "Zaloguj się", new_user_session_path %></li>
 			 <% end %>
    	</div>
+
+
+
+
+
 
     <div align="right">
     <form class="navbar-form" role="search" action = "/items/search" >
@@ -34,7 +38,10 @@
       </form>
     </div>
 
-	</nav>	
+	</nav>
+
+
+
 
 
 	<% if false %>

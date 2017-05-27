@@ -10,10 +10,14 @@
 	<div class="container" >
 
 		<% @search_results.each do |item| %>
-			<div class="col-md-3 row" id="borderimg2">
+			<div class="col-md-3 row"  >
 
 				<a href="/items/<%= item.id %>">
-					<%= image_tag item.item_img_file_name, class: "item" %>
+
+				<div id="borderimg2" class="item_width">
+					<%= image_tag item.item_img_file_name, class: "item"  %>
+				</div>
+
 				</a>
 
 

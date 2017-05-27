@@ -20,23 +20,54 @@
 
 	height: 350px;
 	width: 250px;
-	border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 0px solid transparent;
-    border-top: 26px solid transparent;
-	
-}
-
+    border-left: 45px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-top: 30px solid transparent;
+    
+   }
 
 
 .items-body {
   background: image-url("wood4.png") repeat;
 }
 
+.item_width {
+    
+height: 347px;
+    width: 300px;
+
+}
+
+
 #borderimg2 { 
-    border-bottom: 10px solid transparent;
-    padding: 0px;
+
+    border-bottom: 11px solid transparent;
+    padding: 0px; 
     -webkit-border-image: image-url("/images/bZ8Lk.png") 50 stretch; 
     -o-border-image:image-url("/images/bZ8Lk.png") 50 stretch; 
     border-image: image-url("/images/bZ8Lk.png") 50 stretch;
+}
+
+
+.grid12-6{
+  position:relative;
+}
+.grid12-6 .inner_box{
+  position:absolute;
+  background:rgba(255,255,255,0.7);
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:35px;
+  text-align:center;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+.grid12-6 .inner_box h2{
+  font-family:arial;
+  text-align:center;
+  font-size:26px;
+  font-weight:normal;
+  color:#777;
 }

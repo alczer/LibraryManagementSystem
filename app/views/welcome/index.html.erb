@@ -1,5 +1,23 @@
-<br />
-<br />
-<center><h1>Witamy w naszej bibliotece.</h1></center>
 
-<center><img src="/images/library.jpg" alt="Nasza Biblioteka" style="width:80%;height:80%;"></center>
+<div class="grid12-6">
+
+<center><img src="/images/library.jpg" alt="Nasza Biblioteka" style="width:100%;height:100%;"></center>
+<div class="inner_box">
+<img src="/images/logo.png" alt="Logo" style="width:30%;height:30%;">
+<h1>Zaloguj się</h1>
+<%= form_for(:user, :url => session_path(:user)) do |f| %>
+  <p><%= f.text_field :email, placeholder: "email"%></p>
+  <p><%= f.password_field :password,placeholder: "hasło" %></p>
+  <p><%= f.check_box :remember_me %>
+  <%= f.label :remember_me, "Zapamiętaj mnie" %></p>
+  <p><%= f.submit 'Zaloguj się' %></p>
+  <p><%= link_to "Nie pamiętasz hasła?", new_password_path(:user) %></p>
+<% end %>
+ 
+
+
+</div>
+
+</div>
+
+
