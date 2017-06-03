@@ -1,15 +1,27 @@
-<h2>Log in</h2>
+<body class="loginsignup-body">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+<div style="width: 900px; margin: 400px auto 0 auto;">
+<div class="grid12-6">
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
+<div class="inner_box">
+<img src="/images/logo.png" alt="Logo" style="width:30%;height:30%;">
+
+<h1>Zaloguj się</h1>
+<%= form_for(:user, :url => session_path(:user)) do |f| %>
+  <p><%= f.text_field :email, placeholder: "email"%></p>
+  <p><%= f.password_field :password,placeholder: "hasło" %></p>
+  <p><%= f.check_box :remember_me if devise_mapping.rememberable?%>
+  <%= f.label :remember_me, "Zapamiętaj mnie" if devise_mapping.rememberable? %></p>
+  <p><%= f.submit 'Zaloguj się' %></p>
+  <p><%= link_to "Nie pamiętasz hasła?", new_password_path(:user) %></p>
+  <p><%= link_to "Zarejestruj się", new_user_registration_path %></p>
 <% end %>
+ 
+</div>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
+
+
+
+</body>

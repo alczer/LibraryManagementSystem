@@ -1,12 +1,20 @@
-<h2>Zarejestruj się</h2>
+<body class="loginsignup-body">
+
+<div style="width: 900px; margin: 400px auto 0 auto;">
+<div class="grid12-6">
+
+<div class="inner_box">
+<img src="/images/logo.png" alt="Logo" style="width:30%;height:30%;">
+
+<h1>Zarejestruj się</h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  	<%= f.input :first_name, :label=>'Imię',required: true, autofocus: true %>
-  	<%= f.input :last_name, :label=>'Nazwisko', required: true, autofocus: true %>
-  	<%= f.input :address, :label=>'Adres zamieszkania', required: true, autofocus: true %>
+    <%= f.input :first_name, :label=>'Imię',required: true, autofocus: true %>
+    <%= f.input :last_name, :label=>'Nazwisko', required: true, autofocus: true %>
+    <%= f.input :address, :label=>'Adres zamieszkania', required: true, autofocus: true %>
     <%= f.input :email, :label=>'Adres email',required: true, autofocus: true %>
     <%= f.input :password, :label=>'Hasło',required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation,:label=>'Potwierdzenie hasła', required: true %>
@@ -17,4 +25,14 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= link_to "Zaloguj się", new_user_session_path %>
+
+ 
+
+
+</div>
+
+</div>
+</div>
+</body>
+

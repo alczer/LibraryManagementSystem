@@ -10,23 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524105244) do
+ActiveRecord::Schema.define(version: 20170527121010) do
 
-  create_table "author", primary_key: "id_author", force: :cascade do |t|
+  create_table "authors", primary_key: "id_author", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
     t.date   "date_born",             null: false
   end
 
-  create_table "authors", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "category", primary_key: "id_category", force: :cascade do |t|
+  create_table "categories", primary_key: "id_category", force: :cascade do |t|
     t.string "name", limit: 255, null: false
   end
 
-  create_table "item", primary_key: "id_item", force: :cascade do |t|
+  create_table "item_authors", primary_key: "id_item_author", force: :cascade do |t|
+    t.integer "id_item",   null: false
+    t.integer "id_author", null: false
+  end
+
+  create_table "item_categories", primary_key: "id_item_category", force: :cascade do |t|
+    t.integer "id_item",     null: false
+    t.integer "id_category", null: false
+  end
+
+  create_table "items", primary_key: "id_item", force: :cascade do |t|
     t.integer  "id_publisher",                       null: false
     t.string   "name",                  limit: 255,  null: false
     t.string   "description",           limit: 1000, null: false
@@ -40,22 +45,7 @@ ActiveRecord::Schema.define(version: 20170524105244) do
     t.datetime "item_img_updated_at"
   end
 
-  create_table "item_author", primary_key: "id_item_author", force: :cascade do |t|
-    t.integer "id_item",   null: false
-    t.integer "id_author", null: false
-  end
-
-  create_table "item_categories", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "item_category", primary_key: "id_item_category", force: :cascade do |t|
-    t.integer "id_item",     null: false
-    t.integer "id_category", null: false
-  end
-
-  create_table "loan", primary_key: "id_loan", force: :cascade do |t|
+  create_table "loans", primary_key: "id_loan", force: :cascade do |t|
     t.integer "id_item",      null: false
     t.integer "id_user",      null: false
     t.date    "date_in",      null: false
@@ -70,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170524105244) do
     t.integer "id_loan",   null: false
   end
 
-  create_table "publisher", primary_key: "id_publisher", force: :cascade do |t|
+  create_table "publishers", primary_key: "id_publisher", force: :cascade do |t|
     t.string "name", limit: 255, null: false
   end
 
