@@ -10,61 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527121010) do
+ActiveRecord::Schema.define(version: 20170604013914) do
 
-  create_table "authors", primary_key: "id_author", force: :cascade do |t|
-    t.string "name",      limit: 255, null: false
-    t.date   "date_born",             null: false
+  create_table "authors", force: :cascade do |t|
+    t.string   "name"
+    t.date     "date_born"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "categories", primary_key: "id_category", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name", limit: 255, null: false
   end
 
-  create_table "item_authors", primary_key: "id_item_author", force: :cascade do |t|
-    t.integer "id_item",   null: false
-    t.integer "id_author", null: false
+  create_table "item_authors", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_item_authors_on_author_id"
+    t.index ["item_id"], name: "index_item_authors_on_item_id"
   end
 
-  create_table "item_categories", primary_key: "id_item_category", force: :cascade do |t|
-    t.integer "id_item",     null: false
-    t.integer "id_category", null: false
+  create_table "item_categories", force: :cascade do |t|
+    t.integer "item_id",     null: false
+    t.integer "category_id", null: false
   end
 
-  create_table "items", primary_key: "id_item", force: :cascade do |t|
-    t.integer  "id_publisher",                       null: false
-    t.string   "name",                  limit: 255,  null: false
-    t.string   "description",           limit: 1000, null: false
-    t.integer  "isbn",                               null: false
-    t.string   "language",              limit: 255,  null: false
-    t.string   "state",                 limit: 12,   null: false
-    t.date     "date_pub",                           null: false
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "isbn"
+    t.string   "language"
+    t.string   "state"
+    t.date     "date_pub"
     t.string   "item_img_file_name"
     t.string   "item_img_content_type"
     t.integer  "item_img_file_size"
     t.datetime "item_img_updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "loans", primary_key: "id_loan", force: :cascade do |t|
-    t.integer "id_item",      null: false
-    t.integer "id_user",      null: false
+  create_table "loans", force: :cascade do |t|
+    t.integer "item_id",      null: false
+    t.integer "user_id",      null: false
     t.date    "date_in",      null: false
     t.date    "date_out",     null: false
-    t.integer "id_librarian", null: false
+    t.integer "librarian_id", null: false
   end
 
-  create_table "penalties", primary_key: "id_penalty", force: :cascade do |t|
+  create_table "penalties", force: :cascade do |t|
     t.date    "date",      null: false
     t.integer "value",     null: false
-    t.integer "id_client", null: false
-    t.integer "id_loan",   null: false
+    t.integer "client_id", null: false
+    t.integer "loan_id",   null: false
   end
 
-  create_table "publishers", primary_key: "id_publisher", force: :cascade do |t|
+  create_table "publishers", force: :cascade do |t|
     t.string "name", limit: 255, null: false
   end
 
-  create_table "users", primary_key: "id_user", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "last_name",              limit: 255,              null: false
     t.string   "email",                  limit: 255,              null: false
     t.string   "address",                limit: 255,              null: false
