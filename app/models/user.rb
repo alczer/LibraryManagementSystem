@@ -11,7 +11,7 @@ private
   self.date_joined= Time.now
  end
  def add_id_user
-  self.id_user= id
+  self.id= id
  end
  def add_type
   self.user_type="klient"

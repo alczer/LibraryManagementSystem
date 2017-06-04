@@ -1,6 +1,40 @@
 
 <body class="items-body">
 
+
+<div style="width: auto; margin: 60px auto 0 auto;">
+	<div align="center">
+	<form action="/items/search" class="form-inline">
+        <div class="input-group">
+        	<div class="form-group">
+            <%= text_field_tag :search_title, params[:search_title], placeholder: "Tytuł", class: "form-control" %>
+            </div>
+            <div class="form-group">
+            <%= text_field_tag :search_author, params[:search_author], placeholder: "Autor", class: "form-control" %>
+            </div>
+            <div class="form-group">
+            <%= text_field_tag :search_isbn, params[:search_isbn], placeholder: "ISBN", class: "form-control" %>
+            </div>
+            <div class="form-group">
+            <%= text_field_tag :search_publisher, params[:search_publisher], placeholder: "Wydawca", class: "form-control" %>
+            </div>
+            <div class="form-group">
+            <%= text_field_tag :search_language, params[:search_language], placeholder: "Język", class: "form-control" %>
+            </div>
+                <button class="btn btn-default" type="submit"></i>Szukanie zaawansowane</button>
+        	</div>
+        </form>
+    </div>
+<br />
+<br />
+</div>
+
+
+
+
+
+
+
 <% if @search_results.count == 0 %>
 	<h1>Nie znaleziono żadnych wyników</h1>
 <% else %>	

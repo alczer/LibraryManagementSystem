@@ -10,6 +10,11 @@ end
   	@search_results = Item.search(params[:search])
   end
 
+  def search_advanced
+    @search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher])
+  end
+
+
   def show
   end
 
