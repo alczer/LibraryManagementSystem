@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @penalty.date %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @penalty.value %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @penalty.client %>
+</p>
+
+<p>
+  <strong>Loan:</strong>
+  <%= @penalty.loan %>
+</p>
+
+<%= link_to 'Edit', edit_penalty_path(@penalty) %> |
+<%= link_to 'Back', penalties_path %>

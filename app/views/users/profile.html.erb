@@ -1,0 +1,22 @@
+<h1><div>Witaj <%= current_user.first_name %></div></h1>
+
+<table>
+  <table>
+    <tr>
+      <th>field1</th>
+      <th>field2</th>
+      <th>field3</th>
+      <th>field4</th>
+      <th>field5</th>
+    </tr>
+    <% @data.each do |data| %>
+        <tr>
+          <td><%= data.id_loan %></td>
+          <td><%= data.id_item %></td>
+          <td><%= data.id_user %></td>
+          <td><%= data.date_in %></td>
+          <td><%= data.date_out %></td>
+        </tr>
+    <% end %>
+  </table>
+</table>

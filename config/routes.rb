@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :item_authors
+  resources :item_categories
+  resources :loans
+  resources :penalties
+  resources :publishers
+  resources :categories
+  resources :authors
+  get 'users/profile'
+
   get 'items/search'
 
   get 'items/new'

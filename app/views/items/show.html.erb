@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Isbn:</strong>
+  <%= @item.isbn %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @item.language %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @item.state %>
+</p>
+
+<p>
+  <strong>Date pub:</strong>
+  <%= @item.date_pub %>
+</p>
+
+<p>
+  <strong>Item img file name:</strong>
+  <%= @item.item_img_file_name %>
+</p>
+
+<p>
+  <strong>Item img content type:</strong>
+  <%= @item.item_img_content_type %>
+</p>
+
+<p>
+  <strong>Item img file size:</strong>
+  <%= @item.item_img_file_size %>
+</p>
+
+<p>
+  <strong>Item img updated at:</strong>
+  <%= @item.item_img_updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
