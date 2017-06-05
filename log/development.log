@@ -1240,3 +1240,282 @@ Processing by ItemAuthorsController#index as HTML
 Completed 200 OK in 51ms (Views: 49.8ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-06-05 22:38:55 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 1440ms (Views: 1428.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/items/search?search=" for 127.0.0.1 at 2017-06-05 22:39:00 +0200
+Processing by ItemsController#search as HTML
+  Parameters: {"search"=>""}
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE (name LIKE '%%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%%')[0m
+  Rendering items/search.html.erb within layouts/application
+  Rendered items/search.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 87ms (Views: 56.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/items/search_advanced?search_title=Chroom&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:39:05 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"Chroom", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 49ms (Views: 47.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/items/search_advanced?search_title=&search_author=Rowling&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:40:56 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"", "search_author"=>"Rowling", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%Rowling%')[0m
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT "items".* FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%Rowling%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 60ms (Views: 59.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/search_advanced?search_title=&search_author=Rowling&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:11 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"", "search_author"=>"Rowling", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+DEPRECATION WARNING: uniq is deprecated and will be removed from Rails 5.1 (use distinct instead) (called from search_advanced at /home/blubluu/test_webapp/library_project/library_project/app/models/item.rb:21)
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT COUNT(DISTINCT "items"."id") FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%Rowling%')[0m
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT DISTINCT "items".* FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%Rowling%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 91ms (Views: 79.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/items/search_advanced?search_title=Chroom&search_author=Rowling&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:14 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"Chroom", "search_author"=>"Rowling", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+  [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%Rowling%')[0m
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  Rendering items/search_advanced.html.erb within layouts/application
+  Rendered items/search_advanced.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 47ms (Views: 42.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/search_advanced?search_title=Chroom&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:16 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"Chroom", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+DEPRECATION WARNING: uniq is deprecated and will be removed from Rails 5.1 (use distinct instead) (called from search_advanced at /home/blubluu/test_webapp/library_project/library_project/app/models/item.rb:21)
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT COUNT(DISTINCT "items"."id") FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT DISTINCT "items".* FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 37ms (Views: 35.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/search_advanced?search_title=Chroom&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:21 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"Chroom", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+DEPRECATION WARNING: uniq is deprecated and will be removed from Rails 5.1 (use distinct instead) (called from search_advanced at /home/blubluu/test_webapp/library_project/library_project/app/models/item.rb:21)
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT DISTINCT COUNT(DISTINCT "items"."id") FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT DISTINCT "items".* FROM "items" WHERE (name LIKE '%Chroom%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 39ms (Views: 37.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/items/search_advanced?search_title=&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:23 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "items" WHERE (name LIKE '%%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE (name LIKE '%%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 46ms (Views: 44.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/search_advanced?search_title=ieH&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:41:26 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"ieH", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+DEPRECATION WARNING: uniq is deprecated and will be removed from Rails 5.1 (use distinct instead) (called from search_advanced at /home/blubluu/test_webapp/library_project/library_project/app/models/item.rb:21)
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DISTINCT COUNT(DISTINCT "items"."id") FROM "items" WHERE (name LIKE '%ieH%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 63ms (Views: 61.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/search_advanced?search_title=ieH&search_author=&search_isbn=&search_publisher=&search_language=&search_description=" for 127.0.0.1 at 2017-06-05 22:42:30 +0200
+Processing by ItemsController#search_advanced as HTML
+  Parameters: {"search_title"=>"ieH", "search_author"=>"", "search_isbn"=>"", "search_publisher"=>"", "search_language"=>"", "search_description"=>""}
+DEPRECATION WARNING: uniq is deprecated and will be removed from Rails 5.1 (use distinct instead) (called from search_advanced at /home/blubluu/test_webapp/library_project/library_project/app/models/item.rb:21)
+  Rendering items/search_advanced.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DISTINCT COUNT(DISTINCT "items"."id") FROM "items" WHERE (name LIKE '%ieH%')[0m
+  Rendered items/search_advanced.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 42ms (Views: 40.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-06-05 22:43:29 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 58ms (Views: 45.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-06-05 22:43:35 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ASGKrDY2VzGwntYVG9V7GT/+/KAdi+fkZAmo/0tfsgGGCBvRK8TkKZZ4OfS3qPeKrL31TLYPfajwYDtbVNtMrg==", "user"=>{"email"=>"Admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Zaloguj się"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2017-06-05 20:43:35.536535"], ["last_sign_in_at", "2017-06-05 18:48:42.506657"], ["sign_in_count", 5], ["updated_at", "2017-06-05 20:43:35.537547"], ["id", 2]]
+  [1m[35m (83.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 444ms (ActiveRecord: 84.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-05 22:43:35 +0200
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 45ms (Views: 43.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/authors" for 127.0.0.1 at 2017-06-05 22:43:50 +0200
+Processing by AuthorsController#index as HTML
+  Parameters: {"authenticity_token"=>"QIJIOZysgow7nixy+sizAl6EnhLLI/QG4nGYdSedS9E8ylf1pGldJWOaPPMTJlGVXBHaLf8SmLZjuut9yVAzpg=="}
+  Rendering authors/index.html.erb within layouts/application
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  Rendered authors/index.html.erb within layouts/application (4.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 39ms (Views: 37.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2017-06-05 22:43:52 +0200
+Processing by CategoriesController#index as HTML
+  Parameters: {"authenticity_token"=>"H3mQJHrvNd3Bvr05iNcSkyUvLeNnTZcEI1+RuMW4dt9jMY/oQirqdJm6rbhhOfAEJ7pp3FN8+7SilOKwK3UOqA=="}
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 40ms (Views: 37.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/publishers" for 127.0.0.1 at 2017-06-05 22:43:52 +0200
+Processing by PublishersController#index as HTML
+  Parameters: {"authenticity_token"=>"U+IxN1Fc7rbRVxN1AgusYdpQEJAC0q/7Klh0aWwH++8vqi77aZkxH4lTA/Tr5U722MVUrzbjw0urkwdhgsqDmA=="}
+  Rendering publishers/index.html.erb within layouts/application
+  [1m[36mPublisher Load (0.1ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers"[0m
+  Rendered publishers/index.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 64.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2017-06-05 22:43:53 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"authenticity_token"=>"iseayTaFCelPX3jQmislsJAstiywADepuLsGaz+XrBD2j4UFDkDWQBdbaFFzxccnkrnyE4QxWxk5cHVj0VrUZw=="}
+  Rendering items/index.html.erb within layouts/application
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" ORDER BY created_at DESC[0m
+  Rendered items/index.html.erb within layouts/application (2.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 44ms (Views: 42.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/penalties" for 127.0.0.1 at 2017-06-05 22:43:54 +0200
+Processing by PenaltiesController#index as HTML
+  Parameters: {"authenticity_token"=>"Q+/nSLf5r5Fpb+mpnHJIcByPgZb0+3S1YcPOBZik9E0/p/iEjzxwODFr+Sh1nKrnHhrFqcDKGAXgCL0NdmmMOg=="}
+  Rendering penalties/index.html.erb within layouts/application
+  [1m[36mPenalty Load (0.1ms)[0m  [1m[34mSELECT "penalties".* FROM "penalties"[0m
+  Rendered penalties/index.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 47ms (Views: 44.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2017-06-05 22:43:56 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"authenticity_token"=>"5qd+JxMw+AGt3YDjcqwIZpOUYAlMT+6fNFzJ7gmUJ4ma72HrK/UnqPXZkGKbQurxkQEkNnh+gi+1l7rm51lf/g=="}
+  Rendering items/index.html.erb within layouts/application
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" ORDER BY created_at DESC[0m
+  Rendered items/index.html.erb within layouts/application (1.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 49ms (Views: 47.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/loans" for 127.0.0.1 at 2017-06-05 22:43:59 +0200
+Processing by LoansController#index as HTML
+  Parameters: {"authenticity_token"=>"ASphuGt8JhG9DF0Cxet6cLH5zb64gBBHX6l4XLqcnqJ9Yn50U7n5uOUITYMsBZjns2yJgYyxfPfeYgtUVFHm1Q=="}
+  Rendering loans/index.html.erb within layouts/application
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT "loans".* FROM "loans"[0m
+  Rendered loans/index.html.erb within layouts/application (2.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 45ms (Views: 42.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/item_authors" for 127.0.0.1 at 2017-06-05 22:44:01 +0200
+Processing by ItemAuthorsController#index as HTML
+  Parameters: {"authenticity_token"=>"P6fT8oTCyARfrNuWqHplGBX9cCDWtPHcbLhamT6gMeND78w+vAcXrQeoyxdBlIePF2g0H+KFnWztcymR0G1JlA=="}
+  Rendering item_authors/index.html.erb within layouts/application
+  [1m[36mItemAuthor Load (0.1ms)[0m  [1m[34mSELECT "item_authors".* FROM "item_authors"[0m
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.0ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "items".* FROM "items" WHERE "items"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.0ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 27], ["LIMIT", 1]]
+  Rendered item_authors/index.html.erb within layouts/application (38.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 84ms (Views: 81.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/item_categories" for 127.0.0.1 at 2017-06-05 22:44:02 +0200
+Processing by ItemCategoriesController#index as HTML
+  Parameters: {"authenticity_token"=>"beo48PbRYMkwkM9Txn/9ZmkRQnX0v9rv+QTMPBECq8gRoic8zhS/YGiU39IvkR/xa4QGSsCOtl94z780/8/Tvw=="}
+  Rendering item_categories/index.html.erb within layouts/application
+  [1m[36mItemCategory Load (0.1ms)[0m  [1m[34mSELECT "item_categories".* FROM "item_categories"[0m
+  Rendered item_categories/index.html.erb within layouts/application (1.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 43ms (Views: 40.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-05 22:44:04 +0200
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 45ms (Views: 44.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-06-05 22:44:05 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"bLuOai8Z3rjIW5nDoSR5P2LZ2Di/3EiS9NQSCfj/S9EQ85GmF9wBEZBfiUJIypuoYEycB4vtJCJ1H2EBFjIzpg=="}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 20ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-05 22:44:05 +0200
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 45ms (Views: 43.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-06-05 22:44:07 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 74ms (Views: 72.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/items/search?search=" for 127.0.0.1 at 2017-06-05 22:44:09 +0200
+Processing by ItemsController#search as HTML
+  Parameters: {"search"=>""}
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE (name LIKE '%%')[0m
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items" INNER JOIN "item_authors" ON "item_authors"."item_id" = "items"."id" INNER JOIN "authors" ON "authors"."id" = "item_authors"."author_id" WHERE (Authors.name LIKE '%%')[0m
+  Rendering items/search.html.erb within layouts/application
+  Rendered items/search.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 45ms (Views: 42.4ms | ActiveRecord: 0.3ms)
+
+

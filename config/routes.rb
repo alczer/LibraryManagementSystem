@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :item_authors
   resources :item_categories
   resources :loans
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :authors
   get 'users/profile'
+
+  get 'items/search_advanced'
 
   get 'items/search'
 

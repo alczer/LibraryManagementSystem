@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def search_advanced
-    @search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher])
+    @advanced_search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher],params[:search_language],params[:search_description])
   end
 
 
