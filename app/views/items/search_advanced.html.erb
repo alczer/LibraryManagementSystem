@@ -3,10 +3,11 @@
 
 <div style="width: auto; margin: 60px auto 0 auto;">
 	<div align="center">
-	<form action="/items/search_advanced" class="form-inline">
-        <div class="input-group">
+	<form action="/items/search_advanced" class="form-inline" margin="auto" >
+
+        <div class="input-group" display="inline-block" >
         	<div class="form-group">
-            <%= text_field_tag :search_title, params[:search_title], placeholder: "Tytuł", class: "form-control" %>
+            <%= text_field_tag :search_title, params[:search_title], placeholder: "Tytuł", class: "form-control"  %>
             </div>
             <div class="form-group">
             <%= text_field_tag :search_author, params[:search_author], placeholder: "Autor", class: "form-control" %>
@@ -15,17 +16,34 @@
             <%= text_field_tag :search_isbn, params[:search_isbn], placeholder: "ISBN", class: "form-control" %>
             </div>
             <div class="form-group">
-            <%= text_field_tag :search_publisher, params[:search_publisher], placeholder: "Wydawca", class: "form-control" %>
+            <%= text_field_tag :search_publisher, params[:search_publisher], placeholder: "Wydawnictwo", class: "form-control" %>
             </div>
             <div class="form-group">
             <%= text_field_tag :search_language, params[:search_language], placeholder: "Język", class: "form-control" %>
             </div>
-        	<div class="form-group">
+            <div class="form-group">
             <%= text_field_tag :search_description, params[:search_description], placeholder: "Opis", class: "form-control" %>
             </div>
+
+			<div class="form-group">
+
+				<select id="select_category" name="select_category" class="form-control">
+  				<optgroup>
+  					<option selected><p style="color:#808080"></p></option>
+  				<% Category.all.each do |dd| %>
+    				<option><%= dd.name %></option>
+    			<% end %>
+  				</optgroup>
+				</select>
+
+
+			</div>
+			<div class="form-group">
                 <button class="btn btn-default" type="submit"></i>Szukanie zaawansowane</button>
-        	</div>
-        </form>
+            </div>
+
+        </div>
+    </form>
     </div>
 <br />
 <br />
@@ -43,7 +61,7 @@
 				<a href="/items/<%= item.id %>">
 
 				<div id="borderimg2" class="item_width">
-					<%= image_tag item.item_img_file_name, class: "item"  %>
+					<%= image_tag item.item_img_file_name, class: "item item-shelf"  %>
 				</div>
 
 				</a>

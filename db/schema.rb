@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604013914) do
+ActiveRecord::Schema.define(version: 20170606062733) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -35,12 +35,14 @@ ActiveRecord::Schema.define(version: 20170604013914) do
   create_table "item_categories", force: :cascade do |t|
     t.integer "item_id",     null: false
     t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_item_categories_on_category_id"
+    t.index ["item_id"], name: "index_item_categories_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "isbn"
+    t.integer  "isbn",                  limit: 8
     t.string   "language"
     t.string   "state"
     t.date     "date_pub"
@@ -48,8 +50,10 @@ ActiveRecord::Schema.define(version: 20170604013914) do
     t.string   "item_img_content_type"
     t.integer  "item_img_file_size"
     t.datetime "item_img_updated_at"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "publisher_id"
+    t.index ["publisher_id"], name: "index_items_on_publisher_id"
   end
 
   create_table "loans", force: :cascade do |t|

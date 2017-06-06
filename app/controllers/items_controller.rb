@@ -9,10 +9,12 @@ class ItemsController < ApplicationController
 
   def search
     @search_results = Item.search(params[:search])
+    session[:search_results] = request.url
   end
 
   def search_advanced
-    @advanced_search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher],params[:search_language],params[:search_description])
+    @advanced_search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher],params[:search_language],params[:search_description],params[:select_category])
+    session[:search_results] = request.url
   end
 
 

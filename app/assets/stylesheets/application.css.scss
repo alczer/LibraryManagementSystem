@@ -16,7 +16,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.item {
+.item-shelf {
 
 	height: 350px;
 	width: 250px;
@@ -34,8 +34,15 @@
 
 .item_width {
     
-height: 347px;
+    height: 347px;
     width: 300px;
+
+}
+
+.item_width_big {
+
+  height: 530px;
+  width: 350px;
 
 }
 
@@ -71,3 +78,17 @@ height: 347px;
   font-weight:normal;
   color:#777;
 }
+
+.op-butt {
+    margin-left: 15px;
+    margin-right: 0px; float: left;
+    color: #000000 !important;
+    background: rgb(205, 205, 205); /* Fallback for older browsers without RGBA-support */
+    background: rgba(205, 205, 205, 0.85);
+    border-style: solid;
+    border-color: #FFFFFF #FFFFFF;
+
+}
+
+
+
