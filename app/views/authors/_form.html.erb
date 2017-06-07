@@ -2,11 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :date_born %>
+    <%= f.text_field :name, :label => "Nazwa", :size => 72, include_blank: false%>
+    <br><br>
+    <%= f.date_field :date_born, :label => "Data urodzenia", :style => "width:492px", min: "0001-01-01", max: Date.today, include_blank: false%>
+    <br><br>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Zatwierdź" %>
   </div>
 <% end %>

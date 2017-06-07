@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   resources :publishers
   resources :categories
   resources :authors
+
+  match 'loans/:loan_id/:item_id/return', :to => 'loans#return',:as => 'loan_return', :via => :post
+
+  match 'loans/:loan_id/:item_id/undo_return', :to => 'loans#undo_return',:as => 'loan_undo_return', :via => :post
+
+
   get 'users/profile'
 
   get 'items/search_advanced'
@@ -25,6 +31,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   root 'welcome#index'
+
   resources :items
   resources :users, only: [:show, :update]
 

@@ -9,10 +9,8 @@
     <%= f.input :state %>
     <%= f.input :count %>
 
+    <%= f.association :publisher, :label => "Wydawca", label_method: :name, value_method: :id, include_blank: false %>
 
-    <%= f.collection_select :publisher_id, Publisher.all, :id, :name%>
-    <%= f.collection_select :author_ids, Author.all, :id, :name%>
-    <%= f.collection_select :category_ids, Category.all, :id, :name%>
 
     <%= f.input :date_pub %>
 
@@ -20,6 +18,12 @@
     <%= f.input :item_img_content_type %>
     <%= f.input :item_img_file_size %>
     <%= f.input :item_img_updated_at %>
+
+    <%= f.select :authors, options_from_collection_for_select(Author.all, :id, :name), {},
+                 {:multiple => true}%>
+    <br><br>
+    <%= f.select :categories, options_from_collection_for_select(Category.all, :id, :name), {},
+                 {:multiple => true}%>
   </div>
 
   <div class="form-actions">

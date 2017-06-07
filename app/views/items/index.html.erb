@@ -34,6 +34,7 @@
         <td style="padding: 3px"><%= item.date_pub %></td>
         <td style="padding: 3px"><%= item.count %></td>
         <td style="padding: 3px"><%= item.item_img_file_name %></td>
+        <td style="padding: 3px"><%= item.id %></td>
         <td style="padding: 3px"><%= link_to 'Wyświetl', item %></td>
         <td style="padding: 3px"><%= link_to 'Edytuj', edit_item_path(item) %></td>
         <td style="padding: 3px"><%= link_to 'Usuń', item, method: :delete, data: { confirm: 'Na pewno?' } %></td>

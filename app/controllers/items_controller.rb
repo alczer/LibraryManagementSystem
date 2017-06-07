@@ -8,14 +8,16 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @search_results = Item.search(params[:search])
+    @search_results = Item.search(params[:search],params[:select_order])
     session[:search_results] = request.url
   end
 
   def search_advanced
-    @advanced_search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher],params[:search_language],params[:search_description],params[:select_category])
+    @advanced_search_results = Item.search_advanced(params[:search_author],params[:search_title],params[:search_isbn],params[:search_publisher],params[:search_language],params[:search_description],params[:select_category],params[:select_order])
     session[:search_results] = request.url
   end
+
+
 
 
   # GET /items/1
@@ -36,7 +38,17 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    puts item_params.inspect
 
+
+
+    item_params["authors"].each do |a|
+      puts "-----------------------------------------------------------!!!!"
+      puts a
+      @item.authors = a
+
+
+    end
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -46,6 +58,7 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+    puts @item.inspect
   end
 
   # PATCH/PUT /items/1
@@ -79,11 +92,11 @@ class ItemsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  #def item_params
-  #  params.require(:item).permit(:name, :description, :isbn, :language, :state, :date_pub, :item_img_file_name, :item_img_content_type, :item_img_file_size, :item_img_updated_at)
-  #end
   def item_params
-    params.require(:item).permit(:name,:description,:isbn,:language,:state,:date_pub,:item_img)
+    params.require(:item).permit(:name, :description, :isbn, :language, :state, :count, :publisher_id, :date_pub, :item_img_file_name, :item_img_content_type, :item_img_file_size, :item_img_updated_at , :category_ids => [],:author_ids => [])
   end
+  # def item_params
+  #   params.require(:item).permit(:name,:description,:isbn,:language,:state, :count, :date_pub,:item_img)
+  # end
 
 end

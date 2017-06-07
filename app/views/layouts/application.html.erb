@@ -28,8 +28,7 @@
             <li><%= link_to "Kategorie", categories_path, method: :get %></li>
             <li><%= link_to "Wydawcy", publishers_path, method: :get %></li>
 
-            <li><%= link_to "TMP item_auth", item_authors_path, method: :get %></li>
-            <li><%= link_to "TMP item_cat", item_categories_path, method: :get %></li>
+
         <% else %>
             <li><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "Edytuj konto", edit_user_registration_path, method: :get %></li>

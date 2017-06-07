@@ -25,16 +25,16 @@ Oczekujące wypożyczenia
         <td style="padding: 3px"><%= link_to 'Wyświetl', loan %></td>
         <td style="padding: 3px"><%= link_to 'Edytuj', edit_loan_path(loan) %></td>
         <td style="padding: 3px"><%= link_to 'Usuń', loan, method: :delete, data: { confirm: 'Na pewno?' } %></td>
-        <td style="padding: 3px"><%= link_to "Zwrot przedmiotu",
-                                             loan_path(loan,
-                                                       :loan => { :date_out => Time.now.strftime("%d/%m/%Y %H:%M")}),
-                                             :method => :put%></td>
+        <td style="padding: 3px"><%= link_to "Zwrot", loan_return_path(loan , loan.item_id), :method => :post %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+
 
 Pozostałe wypożyczenia:
 <table border = "2">
@@ -60,10 +60,7 @@ Pozostałe wypożyczenia:
         <td style="padding: 3px"><%= link_to 'Wyświetl', loan %></td>
         <td style="padding: 3px"><%= link_to 'Edytuj', edit_loan_path(loan) %></td>
         <td style="padding: 3px"><%= link_to 'Usuń', loan, method: :delete, data: { confirm: 'Na pewno?' } %></td>
-        <td style="padding: 3px"><%= link_to "Anuluj zwrot",
-                                             loan_path(loan,
-                                                       :loan => { :date_out => "0001-01-01 00:00:00"}),
-                                             :method => :put%></td>
+        <td style="padding: 3px"><%= link_to "Anuluj zwrot", loan_undo_return_path(loan , loan.item_id), :method => :post %></td>
       </tr>
   <% end %>
   </tbody>

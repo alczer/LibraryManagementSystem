@@ -5,11 +5,17 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_categories
   belongs_to :publisher
 
-  def self.search(search)
-    (where("name LIKE ?", "%#{search}%") + Item.joins(:authors).where("Authors.name LIKE :search", search: "%#{search}%")).uniq
+  def self.search(search,select_order)
+    if select_order == "Sortowanie alfabetyczne"
+      itemss = (where("name LIKE ?", "%#{search}%") + Item.joins(:authors).where("Authors.name LIKE :search", search: "%#{search}%")).uniq
+      itemss = itemss.order("name ASC")
+    else
+      (where("name LIKE ?", "%#{search}%") + Item.joins(:authors).where("Authors.name LIKE :search", search: "%#{search}%")).uniq
+    end
+
   end
 
-  def self.search_advanced(search_author,search_title,search_isbn,search_publisher,search_language,search_description,select_category)
+  def self.search_advanced(search_author,search_title,search_isbn,search_publisher,search_language,search_description,select_category,select_order)
     results = []
     puts select_category
     #Remember to add special functions at the beginning!! The rest follows the pattern
@@ -25,7 +31,12 @@ class Item < ApplicationRecord
     queries_texts.zip(queries.drop(3)).map{|text, query| queries_funs.push(-> () {where("#{text} LIKE ?", "%#{query}%")})}
 
     if queries.all?{|x| x.nil?}
-      where("name LIKE ?", "%%")
+      if select_order == "Sortowanie alfabetyczne"
+      itemss = where("name LIKE ?", "%%")
+      itemss = itemss.order("name ASC")
+      else
+        itemss = where("name LIKE ?", "%%")
+        end
     else
       responses = queries.zip(queries_funs).map{|x, y| x ? y.() : nil}.compact.reduce{|x,y| x & y}.uniq
     end

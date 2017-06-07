@@ -1,20 +1,25 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
 
-  def complete
-    @loan = User.find params[:id]
-    # Authorization checks go here
-    @loan.date_out = "0001-01-01"
-    @loan.save
-    # Redirection go here
+  def return
+    item = Item.find(params[:item_id])
+    value = item.count + 1
+    item.update_attribute(:count, value)
+    loan = Loan.find(params[:loan_id])
+    loan.update_attribute(:date_out, Time.now.strftime("%d/%m/%Y %H:%M"))
+
+    redirect_back(fallback_location: root_path)
+
   end
 
-  def uncomplete
-    @loan = User.find params[:id]
-    # Authorization checks go here
-    @loan.facebook_uid = nil
-    @loan.save
-    # Redirection go here
+  def undo_return
+    item = Item.find(params[:item_id])
+    value = item.count - 1
+    item.update_attribute(:count, value)
+    loan = Loan.find(params[:loan_id])
+    loan.update_attribute(:date_out, "0001-01-01")
+
+    redirect_back(fallback_location: root_path)
   end
 
   # GET /loans
@@ -43,6 +48,9 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     @loan = Loan.new(loan_params)
+    item = Item.find(loan_params[:item_id])
+    value = item.count - 1
+    item.update_attribute(:count, value)
 
     respond_to do |format|
       if @loan.save
