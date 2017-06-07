@@ -1,10 +1,28 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
 
+  def complete
+    @loan = User.find params[:id]
+    # Authorization checks go here
+    @loan.date_out = "0001-01-01"
+    @loan.save
+    # Redirection go here
+  end
+
+  def uncomplete
+    @loan = User.find params[:id]
+    # Authorization checks go here
+    @loan.facebook_uid = nil
+    @loan.save
+    # Redirection go here
+  end
+
   # GET /loans
   # GET /loans.json
   def index
     @loans = Loan.all
+    @loans_waiting = Loan.where(:date_out => "0001-01-01")
+    @loans_complete = Loan.where.not(:date_out => "0001-01-01")
   end
 
   # GET /loans/1
@@ -62,13 +80,16 @@ class LoansController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_loan
-      @loan = Loan.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def loan_params
-      params.require(:loan).permit(:item_id, :user_id, :date_in, :date_out, :librarian_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def loan_params
+
+    defaults = {date_in: Time.now.strftime("%d/%m/%Y %H:%M"), date_out: "0001-01-01 00:00:00", librarian_id: current_user.id}
+    params.require(:loan).permit(:item_id, :user_id, :date_in, :date_out, :librarian_id).reverse_merge(defaults)
+
+  end
 end

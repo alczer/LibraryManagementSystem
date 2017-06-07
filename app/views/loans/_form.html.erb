@@ -1,15 +1,12 @@
 <%= simple_form_for(@loan) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :item %>
-    <%= f.association :user %>
-    <%= f.input :date_in %>
-    <%= f.input :date_out %>
-    <%= f.association :librarian %>
-  </div>
+<div class="form-inputs">
+  <%= f.association :item, :label => "Przedmiot", include_blank: false %>
+  <%= f.association :user, :label => "Klient", label_method: :fullname, value_method: :id, include_blank: false %>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<div class="form-actions">
+  <%= f.button :submit, 'Dodaj' %>
+</div>
 <% end %>

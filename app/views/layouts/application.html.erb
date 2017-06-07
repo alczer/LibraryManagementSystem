@@ -16,14 +16,18 @@
   <div class="nav navbar-nav">
     <% if user_signed_in? %>
         <% if current_user.user_type == "admin" %>
-            <li><%= link_to "Admin wyloguj się", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Admin edytuj konto", edit_user_registration_path, method: :get %></li>
+            <li><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Edytuj konto", edit_user_registration_path, method: :get %></li>
+            <li><%= link_to "Moje konto", users_profile_path, method: :get %></li>
+
+            <li><%= link_to "Wypożyczenia", loans_path, method: :get %></li>
+            <li><%= link_to "Przedmioty", items_path, method: :get %></li>
+            <li><%= link_to "Kary", penalties_path, method: :get %></li>
+
             <li><%= link_to "Autorzy", authors_path, method: :get %></li>
             <li><%= link_to "Kategorie", categories_path, method: :get %></li>
             <li><%= link_to "Wydawcy", publishers_path, method: :get %></li>
-            <li><%= link_to "Przedmioty", items_path, method: :get %></li>
-            <li><%= link_to "Kary", penalties_path, method: :get %></li>
-            <li><%= link_to "Wypożyczenia", loans_path, method: :get %></li>
+
             <li><%= link_to "TMP item_auth", item_authors_path, method: :get %></li>
             <li><%= link_to "TMP item_cat", item_categories_path, method: :get %></li>
         <% else %>

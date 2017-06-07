@@ -7,7 +7,15 @@
     <%= f.input :isbn %>
     <%= f.input :language %>
     <%= f.input :state %>
+    <%= f.input :count %>
+
+
+    <%= f.collection_select :publisher_id, Publisher.all, :id, :name%>
+    <%= f.collection_select :author_ids, Author.all, :id, :name%>
+    <%= f.collection_select :category_ids, Category.all, :id, :name%>
+
     <%= f.input :date_pub %>
+
     <%= f.input :item_img_file_name %>
     <%= f.input :item_img_content_type %>
     <%= f.input :item_img_file_size %>

@@ -1,22 +1,33 @@
 <h1><div>Witaj <%= current_user.first_name %></div></h1>
+<div>Aktualnie wypożyczone:</div>
 
-<table>
-  <table>
-    <tr>
-      <th>field1</th>
-      <th>field2</th>
-      <th>field3</th>
-      <th>field4</th>
-      <th>field5</th>
-    </tr>
-    <% @data.each do |data| %>
-        <tr>
-          <td><%= data.id_loan %></td>
-          <td><%= data.id_item %></td>
-          <td><%= data.id_user %></td>
-          <td><%= data.date_in %></td>
-          <td><%= data.date_out %></td>
-        </tr>
-    <% end %>
-  </table>
+<table border = "2">
+  <tr>
+    <th style="padding: 5px">Przedmiot</th>
+    <th style="padding: 5px">Data wypożyczenia</th>
+    <th style="padding: 5px">Pozostało do oddania</th>
+  </tr>
+  <% @actual_data.each do |adata| %>
+      <tr>
+        <td style="padding: 5px"><%= adata.item.name %></td>
+        <td style="padding: 5px"><%= adata.date_in %></td>
+        <td style="padding: 5px"><%= ((adata.date_in + 3.month)-adata.date_in).to_i%></td>
+      </tr>
+  <% end %>
+</table>
+<br>
+<div>Wcześniejsze wypożyczenia:</div>
+<table border = "2">
+  <tr>
+    <th style="padding: 5px">Przedmiot</th>
+    <th style="padding: 5px">Data wypożyczenia</th>
+    <th style="padding: 5px">Data oddania</th>
+  </tr>
+  <% @data.each do |data| %>
+      <tr>
+        <td style="padding: 5px"><%= data.item.name %></td>
+        <td style="padding: 5px"><%= data.date_in %></td>
+        <td style="padding: 5px"><%= data.date_out %></td>
+      </tr>
+  <% end %>
 </table>

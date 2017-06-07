@@ -1,30 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Loans</h1>
+<h1>Wypożyczenia</h1>
+<h3><%= link_to 'Nowe wypożyczenie', new_loan_path %></h3>
 
-<table>
+Oczekujące wypożyczenia
+<table border = "2">
   <thead>
     <tr>
-      <th>Item</th>
-      <th>User</th>
-      <th>Date in</th>
-      <th>Date out</th>
-      <th>Librarian</th>
-      <th colspan="3"></th>
+      <th style="padding: 3px">Przedmiot</th>
+      <th style="padding: 3px">Klient</th>
+      <th style="padding: 3px">Data wypożyczenia</th>
+      <th style="padding: 3px">Bibliotekarz</th>
+      <th style="padding: 3px" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @loans.each do |loan| %>
+    <% @loans_waiting.each do |loan| %>
       <tr>
-        <td><%= loan.item %></td>
-        <td><%= loan.user %></td>
-        <td><%= loan.date_in %></td>
-        <td><%= loan.date_out %></td>
-        <td><%= loan.librarian %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="padding: 3px"><%= loan.item.name %></td>
+        <td style="padding: 3px"><%= loan.user.first_name + " " + loan.user.last_name %></td>
+        <td style="padding: 3px"><%= loan.date_in %></td>
+        <td style="padding: 3px"><%= loan.librarian_id %></td>
+        <td style="padding: 3px"><%= link_to 'Wyświetl', loan %></td>
+        <td style="padding: 3px"><%= link_to 'Edytuj', edit_loan_path(loan) %></td>
+        <td style="padding: 3px"><%= link_to 'Usuń', loan, method: :delete, data: { confirm: 'Na pewno?' } %></td>
+        <td style="padding: 3px"><%= link_to "Zwrot przedmiotu",
+                                             loan_path(loan,
+                                                       :loan => { :date_out => Time.now.strftime("%d/%m/%Y %H:%M")}),
+                                             :method => :put%></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +36,35 @@
 
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+Pozostałe wypożyczenia:
+<table border = "2">
+  <thead>
+  <tr>
+    <th style="padding: 3px">Przedmiot</th>
+    <th style="padding: 3px">Klient</th>
+    <th style="padding: 3px">Data wypożyczenia</th>
+    <th style="padding: 3px">Data oddania</th>
+    <th style="padding: 3px">Bibliotekarz</th>
+    <th style="padding: 3px" colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @loans_complete.each do |loan| %>
+      <tr>
+        <td style="padding: 3px"><%= loan.item.name %></td>
+        <td style="padding: 3px"><%= loan.user.first_name + " " + loan.user.last_name %></td>
+        <td style="padding: 3px"><%= loan.date_in %></td>
+        <td style="padding: 3px"><%= loan.date_out %></td>
+        <td style="padding: 3px"><%= loan.librarian_id %></td>
+        <td style="padding: 3px"><%= link_to 'Wyświetl', loan %></td>
+        <td style="padding: 3px"><%= link_to 'Edytuj', edit_loan_path(loan) %></td>
+        <td style="padding: 3px"><%= link_to 'Usuń', loan, method: :delete, data: { confirm: 'Na pewno?' } %></td>
+        <td style="padding: 3px"><%= link_to "Anuluj zwrot",
+                                             loan_path(loan,
+                                                       :loan => { :date_out => "0001-01-01 00:00:00"}),
+                                             :method => :put%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

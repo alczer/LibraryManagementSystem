@@ -3,79 +3,85 @@
 
 
 <div style="display:inline-block;">
-<%= link_to session[:search_results], class: "btn btn-default op-butt" do %>
-    <i class="glyphicon glyphicon-triangle-left"></i> Powrót do wyników wyszukiwania
-<% end %>
+  <%= link_to session[:search_results], class: "btn btn-default op-butt" do %>
+      <i class="glyphicon glyphicon-triangle-left"></i> Powrót do wyników wyszukiwania
+  <% end %>
 </div>
 <br />
 <br />
 
 
 <div style="width: auto; margin: 400px auto 0 auto;">
-<div class="grid12-6" >
+  <div class="grid12-6" >
 
-<div class="inner_box" >
+    <div class="inner_box" >
 
-<div style="display:inline-block;">
+      <div style="display:inline-block;">
 
-<p>
-  <h1> <%= @item.name %></h1>
-</p>
+        <p>
+        <h1> <%= @item.name %></h1>
+        </p>
 
-<p>
-  <strong>Autor(zy):</strong>
-   <% @item.authors.uniq.reverse.drop(1).reverse.each do |au|%>
-   <%= au.name %>, 
-   <% end %>
-   <%= @item.authors.last.name if @item.authors.last != nil%>
-</p>
-
-<p>
-  <strong>Wydawca:</strong>
-  <%= @item.publisher.name %>
-</p>
-
-<p>
-  <strong>Kategoria:</strong>
-  <% @item.categories.uniq.reverse.drop(1).reverse.each do |cat|%>
-   <%= cat.name %>, 
-   <% end %>
-   <%= @item.categories.last.name if @item.categories.last != nil %>
-</p>
-
-<p>
-  <strong>Język:</strong>
-  <%= @item.language %>
-</p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @item.isbn %>
-</p>
-
-<p>
-  <strong>Data wydania:</strong>
-  <%= @item.date_pub %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+        <p>
+          <strong>Ilość dostępnych sztuk:</strong>
+          <%= @item.count %>
+        </p>
 
 
+        <p>
+          <strong>Autorzy:</strong>
+          <% @item.authors.uniq.reverse.drop(1).reverse.each do |au|%>
+              <%= au.name %>,
+          <% end %>
+          <%= @item.authors.last.name if @item.authors.last != nil%>
+        </p>
 
-</div>
-<div style="display:inline-block;vertical-align:top;">
+        <p>
+          <strong>Wydawca:</strong>
+          <%= @item.publisher.name %>
+        </p>
 
-         <%= image_tag @item.item_img_file_name, class: "item item_width_big"  %>
+        <p>
+          <strong>Kategoria:</strong>
+          <% @item.categories.uniq.reverse.drop(1).reverse.each do |cat|%>
+              <%= cat.name %>,
+          <% end %>
+          <%= @item.categories.last.name if @item.categories.last != nil %>
+        </p>
+
+        <p>
+          <strong>Język:</strong>
+          <%= @item.language %>
+        </p>
+
+        <p>
+          <strong>Isbn:</strong>
+          <%= @item.isbn %>
+        </p>
+
+        <p>
+          <strong>Data wydania:</strong>
+          <%= @item.date_pub %>
+        </p>
+
+        <p>
+          <strong>Opis:</strong>
+          <%= @item.description %>
+        </p>
 
 
-</div>
 
-    
-</div>
-</div>
+      </div>
+      <div style="display:inline-block;vertical-align:top;">
+
+        <%= image_tag @item.item_img_file_name, class: "item item_width_big"  %>
+
+
+      </div>
+
+
+    </div>
+  </div>
 </div>
 
 

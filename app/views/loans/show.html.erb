@@ -2,12 +2,12 @@
 
 <p>
   <strong>Item:</strong>
-  <%= @loan.item %>
+  <%= @loan.item.name %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @loan.user %>
+  <%= @loan.user.first_name + " " + @loan.user.last_name %>
 </p>
 
 <p>
@@ -22,8 +22,8 @@
 
 <p>
   <strong>Librarian:</strong>
-  <%= @loan.librarian %>
+  <%= @loan.librarian_id %>
 </p>
 
-<%= link_to 'Edit', edit_loan_path(@loan) %> |
-<%= link_to 'Back', loans_path %>
+<%= link_to 'Edytuj', edit_loan_path(@loan) %> |
+<%= link_to 'Powrót', loans_path %>
